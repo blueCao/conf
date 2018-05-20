@@ -1,0 +1,53 @@
+# .bash_profile
+
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+	. ~/.bashrc
+fi
+
+# User specific environment and startup programs
+#设置历史记录的条数1万
+export HISTSIZE=10000
+
+#zookeeper
+export ZOOCFGDIR=/home/hadoop/zookeeper-3.3.6/conf
+export ZOOBINDIR=/home/hadoop/zookeeper-3.3.6/bin
+export ZOOKEEPER_HOME=/home/hadoop/zookeeper-3.3.6
+
+#hadoop
+#export HADOOP_HOME=/home/hadoop/hadoop-2.6.5
+#export HADOOP_HOME=/home/hadoop/hadoop-3.0.0
+export HADOOP_HOME=/home/hadoop/hadoop-2.8.3
+export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
+export HADOOP_OPTS="-Djava.library.path=$HADOOP_HOME/lib:$HADOOP_COMMON_LIB_NATIVE_DIR"
+#export HADOOP_COMMON_HOME=$HADOOP_HOME/share/hadoop/common
+#export HADOOP_HDFS_HOME=$HADOOP_HOME/share/hadoop/hdfs
+#export HADOOP_MAPRED_HOME=$HADOOP_HOME/share/hadoop/mapreduce
+#export HADOOP_YARN_HOME=$HADOOP_HOME/share/hadoop/yarn
+#export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
+
+#hive
+export HIVE_CONF=/home/hadoop/apache-hive-2.3.3-bin/conf
+export HIVE_HOME=/home/hadoop/apache-hive-2.3.3-bin
+export HCAT_HOME=$HIVE_HOME/hcatalog
+export hive_dependency=$HIVE_HOME/conf:$HIVE_HOME/lib/*
+
+#SPARK_HOME
+export SPARK_HOME=/home/hadoop/spark-2.3.0-bin-hadoop2.7
+
+#jdk
+export JAVA_HOME=/usr/jdk64/jdk1.8.0_40
+#classpath
+export CLASSPATH=".:$JAVA_HOME/lib:$JAVA_HOME/jre/lib:$ZOOKEEPER_HOME/lib:$HIVE_HOME/lib:$SPARK_HOME/jars:$HBASE_HOME/lib:$KYLIN_HOME/lib:~/download_lib"
+
+#path
+PATH=/usr/bin:/bin:/usr/sbin:/sbin
+
+PATH=$PATH:$HOME/bin
+export PATH=$JAVA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$HIVE_HOME/bin:$HBASE_HOME/bin:$ZOOKEEPER_HOME/bin:$KYLIN_HOME/bin:$PATH
+
+#Mapreduce需要使用这个路径
+export HADOOP_CLASSPATH=${JAVA_HOME}/lib/tools.jar
+
+#PYTHONPATH
+export PYTHONPATH=$SPARK_HOME/python:/home/hadoop/.ivy2/cache/graphframes/graphframes/jars/graphframes-0.5.0-spark2.1-s_2.11.jar:$PYTHONPATH
